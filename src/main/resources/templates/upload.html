@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+<form th:action="@{/pic/upload}" method="post" enctype="multipart/form-data">
+    图片名称:<input type="text" name="pname"/><br/>
+    选择图片:<input type="file" name="file"/><span  placeholder="5MB大小"></span><br/>
+    <input type="submit" value="上传"/>
+</form>
+
+
+<ul style="list-style: none">
+    <li th:each="p:${list}" style="float: left;width: 12.5%">
+        <table style="text-align: center;border: solid 1px red">
+            <tr><td><a th:href="${p.psrc}"><img th:src="${p.psrc}" width="100" height="100"></a></td></tr>
+            <tr><td th:text="${p.pname}"></td></tr>
+            <tr><td th:text="${#dates.format(p.ptime,'yyyy-MM-dd hh:mm:ss')}"></td></tr>
+        </table>
+    </li>
+</ul>
+
+</body>
+</html>
